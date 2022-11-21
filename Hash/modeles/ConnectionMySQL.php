@@ -2,7 +2,7 @@
     const UTILISATEUR="root";
     const MOTDEPASSE="";
     const SERVEUR="localhost";
-    const BASEDEDONNEES="trobert";
+    const BASEDEDONNEES="hashage_mdp";
     function getConnection(){
         $utilisateur = UTILISATEUR;
         $motDePasse = MOTDEPASSE;
