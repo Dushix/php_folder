@@ -8,11 +8,23 @@
 <body>
 <form action="../modeles/EXO1_hachageMotDePasse.php" method="post">
     <div>
+        Entrez votre Nom :
+        <input type="text" name="nom" value="" size="20" maxlength="20" />
+        <BR>
+        Entrez votre Prenom :
+        <input type="text" name="prenom" value="" size="20" maxlength="20" />
+        <BR>
+        Entrez votre e-mail :
+        <input type="text" name="email" value="" size="60" maxlength="20" />
+        <BR>
         Entrez votre identifiant :
         <input type="text" name="identifiant" value="" size="20" maxlength="20" />
         <BR>
        Entrez votre mot de passe :
         <input type="password" name="motDePasse" value="" size="20" maxlength="32" />
+        <BR>
+       Entrez à nouveau votre mot de passe :
+        <input type="password" name="conf_password" value="" size="20" maxlength="32" />
 
         <input type="submit" name="soumettre" value="OK" />
     </div>

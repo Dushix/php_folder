@@ -10,11 +10,14 @@ require "./ConnectionMySQL.php" ;
 // variable $password
 
 if (isset($_POST['soumettre'])){
+    $nom = (isset($_POST['nom'])) ? $_POST['nom'] : null;
+    $prenom = (isset($_POST['prenom'])) ? $_POST['prenom'] : null;
+    $email = (isset($_POST['email'])) ? $_POST['email'] : null;
     $utilisateur = (isset($_POST['identifiant'])) ? $_POST['identifiant'] : null;
     $password = (isset($_POST['motDePasse'])) ? $_POST['motDePasse'] : null;
 }
 
-if(!empty($utilisateur)&&!empty($password)){
+if(!empty($utilisateur)&&!empty($password)&&!empty($nom)&&!empty($prenom)&&!empty($email)){
 
 $sql = "select identifiant, motDePasse from comptes where identifiant= ?" ;
 $connection = getConnection();

@@ -10,21 +10,28 @@ require "./ConnectionMySQL.php" ;
 // variable $password
 
 if (isset($_POST['soumettre'])){
+    $nom = (isset($_POST['nom'])) ? $_POST['nom'] : null;
+    $prenom = (isset($_POST['prenom'])) ? $_POST['prenom'] : null;
+    $email = (isset($_POST['email'])) ? $_POST['email'] : null;
     $utilisateur = (isset($_POST['identifiant'])) ? $_POST['identifiant'] : null;
     $password = (isset($_POST['motDePasse'])) ? $_POST['motDePasse'] : null;
 }
 
-if(!empty($utilisateur)&&!empty($password)){
+if(!empty($utilisateur)&&!empty($password)&&!empty($nom)&&!empty($prenom)&&!empty($email)){
 
 // hachage du mot de passe avec la fonction password_hash PHP et
 // l'algorithme le plus fort PASSWORD_ARGON2ID
 $hashDuMotDePasse = password_hash($password, PASSWORD_ARGON2ID);
 
 $connection = getConnection();
-$statement = $connection->prepare("INSERT INTO COMPTES(identifiant,motDePasse) VALUES(:identifiant,:motDePasse)");
+$statement = $connection->prepare("INSERT INTO COMPTES(identifiant,motDePasse,nom,prenom,email) VALUES(:identifiant,:motDePasse,:nom,:prenom,:email)");
+
 
 $statement->bindParam(':identifiant', $utilisateur, PDO::PARAM_STR);
 $statement->bindParam(':motDePasse', $hashDuMotDePasse, PDO::PARAM_STR);
+$statement->bindParam(':nom', $nom, PDO::PARAM_STR);
+$statement->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+$statement->bindParam(':email', $email, PDO::PARAM_STR);
 
 $statement->execute() ;
 
